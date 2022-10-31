@@ -26,8 +26,8 @@ namespace Online_Store.User_Controls
         
 
         public ProductItem ProductItem { get; set; }
-
-        public ProductItem_UC(ProductItem productItem, ObservableCollection<ProductItem> basket)
+        WrapPanel _mainPanel;
+        public ProductItem_UC(ProductItem productItem, ref WrapPanel mainPanel, ObservableCollection<ProductItem> basket)
         {
             InitializeComponent();
 
@@ -35,19 +35,24 @@ namespace Online_Store.User_Controls
 
             ProductItem = productItem;
             _basket = basket;
-
+            _mainPanel = mainPanel;
         }
 
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ProductInfo window = new(ProductItem);
-            window.Show();
+            window.ShowDialog();
         }
 
         private void BtnAddToBasket_Click(object sender, RoutedEventArgs e)
         {
             if (!_basket.Contains(ProductItem))
                 _basket.Add(ProductItem);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            _mainPanel.Children.Remove(this);
         }
     }
 }

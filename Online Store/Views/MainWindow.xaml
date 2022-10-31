@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Online_Store.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Name="Win"
-     Title="{Binding Basket.Count}" Height="600" Width="920"  MinWidth="640" MinHeight="390" Background="Transparent" >
+     Title="Shmail Store" Height="600" Width="920"  MinWidth="640" MinHeight="390" Background="Transparent" WindowStartupLocation="CenterScreen" Icon="/Views/icons8-shopping-basket-96.png" >
     <Border Background="#14171A" >
         <Grid Background="Transparent" >
 
@@ -20,41 +20,18 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
-                <TextBlock 
-                Text="Ali"
-                FontFamily="Comic Sans MS"
+                
+                <!--FontFamily="Comic Sans MS"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Foreground="White"
-                FontSize="22"
-                
-                >
+                FontSize="22"-->
 
-                </TextBlock>
+                <materialDesign:PackIcon Name="IconW" Kind="Shopping" Background="Transparent" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"  Width="50" Height="50" ToolTip="Shmail Store"/>
 
 
 
-                <!--<DockPanel Grid.Row="1" Cursor="Hand">
-                <StackPanel DockPanel.Dock="Top" Margin=" 0 10 0 0">
-                    <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-    Margin="4"
-    IsChecked="True"
-    Content="MAIN" />
-                    <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-    Margin="4"
-    IsChecked="True"
-    Content="FAVORIT" />
 
-                </StackPanel>
-
-               
-
-                
-
-            </DockPanel>-->
 
 
                 <DockPanel Grid.Column="1" >
@@ -68,7 +45,7 @@
                             Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
                             materialDesign:ButtonAssist.CornerRadius="15" Cursor="Hand">
 
-                        <Button.ToolTip>See The Basket</Button.ToolTip>
+                        <Button.ToolTip>Add Product</Button.ToolTip>
                         <materialDesign:PackIcon Kind="CartPlus" Width="40" Height="25" Foreground="White" />
                     </Button>
                   
@@ -82,15 +59,15 @@
                             Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
                             materialDesign:ButtonAssist.CornerRadius="15">
 
-                            <Button.ToolTip>See The Basket</Button.ToolTip>
+                            <Button.ToolTip>Show Basket</Button.ToolTip>
                             <materialDesign:PackIcon Kind="Basket" Width="20" Height="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Button>
                     </materialDesign:Badged>
 
-                    <materialDesign:ColorZone 
+                    <materialDesign:ColorZone  MaxWidth="500"
                         DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"
                        Mode="Standard"
-        CornerRadius="2"
+        CornerRadius="15"
         Panel.ZIndex="1"
         Margin="20 0 0 0"
         materialDesign:ShadowAssist.ShadowDepth="Depth1">
@@ -104,6 +81,7 @@
               Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Button
+                                ToolTip="Search"
                                 Click="ButtonSearch_Click"
             Style="{StaticResource MaterialDesignToolButton}">
                                 <materialDesign:PackIcon
@@ -112,16 +90,18 @@
                             </Button>
 
                             <TextBox
+                                ToolTip="Use '-' symbol for searching price range"
                                 x:Name="txtSearch"
                                 KeyDown="txtSearch_KeyDown"
             Grid.Column="1"
             Margin="8 0 0 0"
-            materialDesign:HintAssist.Hint="Build a search bar"
+            materialDesign:HintAssist.Hint="Search for Name or Price"
             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
             BorderThickness="0"
             MinWidth="200"
-            VerticalAlignment="Center" />
+            VerticalAlignment="Center"/>
                             <Button
+                                ToolTip="Record Voice"
             Style="{StaticResource MaterialDesignToolButton}"
             Grid.Column="2">
                                 <materialDesign:PackIcon

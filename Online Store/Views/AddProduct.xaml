@@ -13,7 +13,8 @@
         MaxWidth="440"
         WindowStartupLocation="CenterScreen"
         Background="#14171A"
-        Foreground="#79C4F6">
+        Foreground="#79C4F6"
+        PreviewKeyDown="ProductAddWin_PreviewKeyDown">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -36,7 +37,7 @@
             Padding="0 0 0 5"
             Margin="5 20 5 5"
             
-            x:Name="txtProductName"
+            x:Name="txtName"
             FontSize="20"
             
             materialDesign:HintAssist.Hint="Product Name"
@@ -47,7 +48,7 @@
             Padding="0 0 0 5"
              Margin="5 20 5 5"
             
-            x:Name="txtProductCompany"
+            x:Name="txtCompany"
             FontSize="20"
             materialDesign:HintAssist.Hint="Comapny Name"
             materialDesign:HintAssist.HelperText="Must Be Filled"
@@ -57,9 +58,9 @@
             Padding="0 0 0 5"
              Margin="5 20 5 5"
            
-            x:Name="txtProductCountry"
+            x:Name="txtCountry"
             FontSize="20"
-            materialDesign:HintAssist.Hint="Country of Origin"
+            materialDesign:HintAssist.Hint="Country"
             materialDesign:HintAssist.HelperText="Must Be Filled"
             materialDesign:HintAssist.HelperTextFontSize="13" />
 
@@ -67,7 +68,7 @@
             Padding="0 0 0 5"
             Margin="5 20 5 5"
             
-            x:Name="txtProductCategory"
+            x:Name="txtCategory"
             FontSize="20"
             materialDesign:HintAssist.Hint="Category"
             materialDesign:HintAssist.HelperText="Must Be Filled"
@@ -77,9 +78,9 @@
             Padding="0 0 0 5"
             Margin="5 20 5 5"
             
-            x:Name="txtProductImage"
+            x:Name="txtImageUrl"
             FontSize="20"
-            materialDesign:HintAssist.Hint="Image Address"
+            materialDesign:HintAssist.Hint="Image Url"
             materialDesign:HintAssist.HelperText="Must Be Filled"
             materialDesign:HintAssist.HelperTextFontSize="13"/>
 
@@ -88,7 +89,7 @@
             Padding="0 0 0 5"
             Margin="5 20 5 5"
            
-            x:Name="txtProductPrice"
+            x:Name="txtPrice"
             FontSize="20"
             materialDesign:HintAssist.Hint="Price"
             materialDesign:HintAssist.HelperText="Must Be Filled"
@@ -98,7 +99,7 @@
             Padding="0 0 0 5"
             Margin="5 20 5 5"
            
-            x:Name="txtProductCount"
+            x:Name="txtCount"
             FontSize="20"
             materialDesign:HintAssist.Hint="Count"
             materialDesign:HintAssist.HelperText="Must Be Filled"
@@ -109,7 +110,7 @@
             Padding="0 0 0 5"
             Margin="5 20 5 5"
             
-            x:Name="txtProductDiscount"
+            x:Name="txtDiscount"
             FontSize="20"
             materialDesign:HintAssist.Hint="Discount"
             materialDesign:HintAssist.HelperText="Must Be Filled"
@@ -140,7 +141,7 @@
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
                 SpellCheck.IsEnabled="True"
-                materialDesign:HintAssist.Hint="Write The Description"/>
+                materialDesign:HintAssist.Hint="Write Description..."/>
 
         </Grid>
 

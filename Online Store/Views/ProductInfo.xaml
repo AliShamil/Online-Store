@@ -13,7 +13,9 @@ Title="Product Info"
         MinHeight="500"
         MaxWidth="440"
         Background="#14171A"
-        Foreground="#79C4F6">
+        Foreground="#79C4F6"
+        WindowStartupLocation="CenterScreen"
+        PreviewKeyDown="InfoWin_PreviewKeyDown">
     <Grid>
 
         <Grid.RowDefinitions>

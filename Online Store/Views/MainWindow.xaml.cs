@@ -1,4 +1,6 @@
-﻿using Online_Store.Models;
+﻿using Bogus;
+using Online_Store.FakeData;
+using Online_Store.Models;
 using Online_Store.User_Controls;
 using System;
 using System.Collections.Generic;
@@ -24,16 +26,18 @@ namespace Online_Store.Views
 
         public MainWindow()
         {
+            Faker faker = new Faker();
+            
             InitializeComponent();
             DataContext = this;
             Products = new();
             Basket = new();
-            Product product = new Product("Mi 11", "Xiaomi", "China", "Phone", "https://avatars.mds.yandex.net/i?id=1fa6fba40f9ff0d90be3889f8345e746-4210949-images-thumbs&n=13","aSdqdasssssssssssssssssssssssssssssssssssssffaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            pnlProducts.Children.Add(new ProductItem_UC(new ProductItem(product, 1, 1200, 20), Basket));
-            pnlProducts.Children.Add(new ProductItem_UC(new ProductItem(product, 1, 1200, 20), Basket));
-            pnlProducts.Children.Add(new ProductItem_UC(new ProductItem(product, 1, 1200, 20), Basket));
-            pnlProducts.Children.Add(new ProductItem_UC(new ProductItem(product, 1, 1200, 20), Basket));
 
+            foreach (var item in FakeProducts.GetProducts)
+            {
+                pnlProducts.Children.Add(new ProductItem_UC(item,ref pnlProducts,Basket));
+            }
+            
         }
 
             private void btnAddProduct_Click(object sender, RoutedEventArgs e)
@@ -43,7 +47,7 @@ namespace Online_Store.Views
                 if (window.ShowDialog() == true)
                 {
                     if (window.ProductItem != null)
-                    pnlProducts.Children.Insert(0, new ProductItem_UC(window.ProductItem, Basket));
+                    pnlProducts.Children.Insert(0, new ProductItem_UC(window.ProductItem, ref pnlProducts, Basket));
                 }
             }
 
@@ -66,10 +70,26 @@ namespace Online_Store.Views
                 }
 
 
-                foreach (var control in pnlProducts.Children.OfType<ProductItem_UC>())
+                foreach (var item in pnlProducts.Children.OfType<ProductItem_UC>())
                 {
-                    if (!control.ProductItem.Product.Name!.ToLower().Contains(txtSearch.Text.ToLower()))
-                        control.Visibility = Visibility.Collapsed;
+                
+                    if(item.ProductItem.Price.ToString()==txtSearch.Text)
+                       item.Visibility = Visibility.Visible;
+                    else if(txtSearch.Text.Contains('-'))
+                {
+                   var words = txtSearch.Text.Trim().Split('-');
+                    if(words.Length<=2)
+                    {
+                        var firstPart = double.Parse(words[0]);
+                        var secondPart = double.Parse(words[1]);
+                        if(item.ProductItem.Price>= firstPart && item.ProductItem.Price <=secondPart)
+                            item.Visibility = Visibility.Visible;
+                        else
+                            item.Visibility = Visibility.Collapsed;
+                    }
+                }
+                    else if (!item.ProductItem.Product.Name!.ToLower().Contains(txtSearch.Text.ToLower()))
+                        item.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -79,6 +99,6 @@ namespace Online_Store.Views
                     ButtonSearch_Click(sender, e);
             }
 
-       
+
     }
 }

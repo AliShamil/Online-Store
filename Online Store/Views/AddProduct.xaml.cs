@@ -36,19 +36,19 @@ namespace Online_Store.Views
             {
                 if (string.IsNullOrWhiteSpace(txt.Text))
                 {
-                    sb.Append($"All Fields must be filled\n");
+                    sb.Append($"All Fields must be written !\n");
                     break;
                 }
             }
 
-            if (!Regex.IsMatch(txtProductPrice.Text, @"^([0-9]+([,][0-9]*)?|[,][0-9]+)$"))
-                sb.Append($"Incorrect Format For Price\n");
+            if (!Regex.IsMatch(txtPrice.Text, @"^([0-9]+([,][0-9]*)?|[,][0-9]+)$"))
+                sb.Append($"Invaild Price !\n");
 
-            if (!Regex.IsMatch(txtProductCount.Text, @"^(0|[1-9][0-9]*)$"))
-                sb.Append($"Incorrect Format For Count\n");
+            if (!Regex.IsMatch(txtCount.Text, @"^(0|[1-9][0-9]*)$"))
+                sb.Append($"Invalid Count !\n");
 
-            if (!Regex.IsMatch(txtProductDiscount.Text, @"^([0-9]+([,][0-9]*)?|[,][0-9]+)$"))
-                sb.Append($"Incorrect Format For Discount\n");
+            if (!Regex.IsMatch(txtDiscount.Text, @"^([0-9]+([,][0-9]*)?|[,][0-9]+)$"))
+                sb.Append($"Invalid Discount !\n");
 
 
             if (sb.Length > 0)
@@ -58,17 +58,23 @@ namespace Online_Store.Views
             }
 
             ProductItem = new(
-                new Product(txtProductName.Text,
-                txtProductCompany.Text,
-                txtDesctiption.Text, txtProductCountry.Text,
-                txtProductCategory.Text, txtProductImage.Text),
-                uint.Parse(txtProductCount.Text),
-                double.Parse(txtProductPrice.Text),
-                double.Parse(txtProductDiscount.Text));
+                new Product(txtName.Text,txtCompany.Text, txtCountry.Text,txtCategory.Text,txtImageUrl.Text,txtDesctiption.Text),
+                uint.Parse(txtCount.Text),
+                double.Parse(txtPrice.Text),
+                double.Parse(txtDiscount.Text));
 
             DialogResult = true;
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e) => DialogResult = false;
+
+
+        private void ProductAddWin_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                ButtonAccept_Click(sender, e);
+            else if (e.Key == Key.Back)
+                ButtonCancel_Click(sender, e);
+        }
     }
 }

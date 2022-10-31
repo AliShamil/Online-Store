@@ -18,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace Online_Store.Views
 {
-    /// <summary>
-    /// BasketInfo.xaml etkileşim mantığı
-    /// </summary>
+
     public partial class BasketInfo : Window
     {
 
@@ -58,12 +56,44 @@ namespace Online_Store.Views
                 TotalCost += p.Price;
         }
 
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var listBox = sender as ListBox;
+            var selectedProductItem = listBox?.SelectedItem as ProductItem;
+
+            if (selectedProductItem is null)
+                return;
+
+            ProductInfo window = new(selectedProductItem);
+            window.ShowDialog();
+
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var p in Basket)
+                --p.Count;
+            TotalCost = 0;
+            Basket.Clear();
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedProductItem = productList?.SelectedItem;
+            if (selectedProductItem is not null)
+                productList?.Items.Remove(selectedProductItem as ProductItem);
+            else
+                return;
+
+
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (TotalCost == 0)
             {
-                MessageBox.Show("First Add Products to Basket", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Basket is Empty!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -74,13 +104,14 @@ namespace Online_Store.Views
             foreach (var p in Basket)
                 sb.Append($"{p.Product.Name}\n");
 
-            sb.Append($"Your Total Cost is: {TotalCost}");
+            sb.Append($"Your Total Cost is: {TotalCost} ₼");
 
-            var result = MessageBox.Show($"{sb}", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            var result = MessageBox.Show($"{sb}", "Are you sure ?", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Thanks for choosing us", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 foreach (var p in Basket)
                     --p.Count;
@@ -91,20 +122,21 @@ namespace Online_Store.Views
 
         }
 
-        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void BasketWin_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            var listBox = sender as ListBox;
-            var selectedProductItem = listBox?.SelectedItem as ProductItem;
+            switch (e.Key)
+            {
+                case Key.Enter:
+                    Button_Click(sender, e);
+                    break;
+                case Key.Back:
+                    DialogResult = false;
+                    break;
+                case Key.Delete:
+                    ClearButton_Click(sender, e);
+                    break;
+            }
 
-            if (selectedProductItem is null)
-                return;
-
-            ProductInfo window = new(selectedProductItem);
-            window.Show();
-
-
-
-            
         }
     }
 }

@@ -36,5 +36,12 @@ namespace Online_Store.Views
             }
         }
 
+        private void InfoWin_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                DialogResult = false;
+            else if (e.Key == Key.Back)
+                DialogResult = false ;
+        }
     }
 }

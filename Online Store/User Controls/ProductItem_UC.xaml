@@ -12,6 +12,11 @@
              MaxWidth="150" 
              materialDesign:ShadowAssist.ShadowDepth="Depth5" MouseDoubleClick="UserControl_MouseDoubleClick"
 >
+    <UserControl.ContextMenu>
+        <ContextMenu Background="{StaticResource MaterialDesignToolTipBackground}" Foreground="White">
+            <MenuItem Header="Delete"  Click="MenuItem_Click" Icon="{materialDesign:PackIcon Delete}"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
     <materialDesign:Card Background="#15202B">
         <Grid>
             <Grid.RowDefinitions>
@@ -130,7 +135,7 @@
             Height="25"
   Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
   ToolTip="Add To Basket"
-  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+ >
                 <materialDesign:PackIcon
     Kind="Add" />
             </Button>

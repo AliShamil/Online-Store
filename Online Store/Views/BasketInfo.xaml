@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Online_Store.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Name="BasketWin"
-        Title="{Binding Height}" Height="450" Width="200"  MinWidth="328" MinHeight="274" Background="#14171A">
+        Title="Basket" Height="450" Width="328"  MaxWidth="328" MinHeight="296" Background="#14171A" PreviewKeyDown="BasketWin_PreviewKeyDown" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -15,23 +15,28 @@
         </Grid.RowDefinitions>
 
         <materialDesign:ColorZone Background="	#192734"
-            
             Mode="PrimaryDark" VerticalAlignment="Stretch">
-            <!--<TextBlock 
-                Style="{StaticResource MaterialDesignHeadline5TextBlock}" 
-                Foreground="{StaticResource MaterialDesignPaper}"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center">Your Basket</TextBlock>-->
-            <materialDesign:PackIcon Name="IconW" Kind="Basket"  VerticalAlignment="Center" HorizontalAlignment="Center"  Width="50" Height="50"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65.6"/>
+                    <ColumnDefinition Width="197*"/>
+                    <ColumnDefinition Width="66*"/>
+                </Grid.ColumnDefinitions>
+                <Button Background='#07456E' HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" materialDesign:ButtonAssist.CornerRadius="5"  Click="ClearButton_Click">
+                    <materialDesign:PackIcon Kind="Delete" Background="Transparent" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Button>
+                <materialDesign:PackIcon Grid.Column="1" Name="IconW" Kind="Basket"  VerticalAlignment="Center" HorizontalAlignment="Center"  Width="50" Height="50" ToolTip="Clear All"/>
+            </Grid>
         </materialDesign:ColorZone>
 
 
-        <ListView Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.Row="1" ItemsSource="{Binding Basket}" MouseDoubleClick="ListView_MouseDoubleClick">
+        <ListView x:Name="productList" Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" Grid.Row="1" ItemsSource="{Binding Basket}" MouseDoubleClick="ListView_MouseDoubleClick">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="3*"/>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
@@ -42,6 +47,9 @@
                             <TextBlock Text="{Binding Price}"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#79C4F6"></TextBlock>
                             <TextBlock Text=" ₼"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#79C4F6"></TextBlock>
 
+                            <Button Margin="20 0 0 0" Width="50" Background="#07456E" Click="DeleteButton_Click" ToolTip="Delete Selected Item">
+                                <materialDesign:PackIcon Kind="Delete" Background="Transparent" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button>
                         </StackPanel>
 
                     </Grid>
@@ -62,7 +70,7 @@
                 <TextBlock Text="₼" Foreground="{StaticResource MaterialDesignPaper}"></TextBlock>
             </StackPanel>
         </Button>
-        
+
     </Grid>
 </Window>
 
