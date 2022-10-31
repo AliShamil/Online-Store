@@ -6,12 +6,15 @@
              xmlns:local="clr-namespace:Online_Store.User_Controls" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              Height="250" 
-             Width="150"
-             Margin="5"
-             MaxHeight="250"
-             MaxWidth="150" 
+             Width="{Binding MinWidth}"
+             Margin="{Binding MinHeight}"
+             MaxHeight="260"
+             MaxWidth="160" 
+             MinHeight="250"
+             MinWidth="150"
              materialDesign:ShadowAssist.ShadowDepth="Depth5" MouseDoubleClick="UserControl_MouseDoubleClick"
 >
+   
     <UserControl.ContextMenu>
         <ContextMenu Background="{StaticResource MaterialDesignToolTipBackground}" Foreground="White">
             <MenuItem Header="Delete"  Click="MenuItem_Click" Icon="{materialDesign:PackIcon Delete}"/>
