@@ -1,0 +1,214 @@
+﻿<Window x:Class="Online_Store.Views.ProductInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Online_Store.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+Title="Product Info" 
+        Name="InfoWin"
+        Height="690" 
+        Width="400"
+        MinWidth="350"
+        MinHeight="500"
+        MaxWidth="440"
+        Background="#14171A"
+        Foreground="#79C4F6">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="1*"/>
+
+        </Grid.RowDefinitions>
+
+        <materialDesign:ColorZone
+            Background="#192734"
+            Mode="PrimaryDark" VerticalAlignment="Stretch">
+            <materialDesign:PackIcon Kind="InformationOutline" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50"/>
+        </materialDesign:ColorZone>
+
+        <Image
+            Grid.Row="1"
+            Source="{Binding ProductItem.Product.ImageUrl}"
+            Margin="0 5 0 0"
+            Stretch="Uniform"/>
+
+        <StackPanel Grid.Row="2"  >
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10 10 10 5">
+
+            <TextBlock
+           Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Name: "/>
+
+            <TextBlock
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Product.Name}"/>
+
+        </StackPanel>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10 5 10 5">
+
+            <TextBlock
+            Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Company : "/>
+
+            <TextBlock
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Product.Company}"/>
+
+        </StackPanel>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10 5 10 5">
+
+            <TextBlock
+            Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Country : "/>
+
+            <TextBlock
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Product.Country}"/>
+
+        </StackPanel>
+
+            <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="10 5 10 5">
+
+            <TextBlock
+            Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Category : "/>
+
+            <TextBlock
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Product.Category}"/>
+
+        </StackPanel>
+
+            <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10 5 10 5">
+
+            <TextBlock
+            Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Price: "/>
+
+            <TextBlock
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Price}"/>
+
+
+            <TextBlock
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="₼"/>
+
+        </StackPanel>
+
+
+
+
+            <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="10 5 10 5">
+
+            <TextBlock
+           Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Count: "/>
+
+            <TextBlock
+           Name="txtbCount"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Count}"/>
+
+            <TextBlock
+           Name="txtbCountLast"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text=" Left"/>
+
+        </StackPanel>
+
+            <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="10 5 10 5">
+
+            <TextBlock
+           Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Discount: "/>
+
+            <TextBlock
+           
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Discount}"/>
+
+            <TextBlock
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="%"/>
+
+        </StackPanel>
+
+
+            <StackPanel Grid.Row="9" Margin="10 5 10 5">
+
+            <TextBlock
+            Foreground="{StaticResource MaterialDesignCardBackground}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            FontFamily="MV Boli"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="Description"/>
+
+            <TextBlock
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                FontSize="14"
+            TextWrapping="Wrap"
+            
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+            Text="{Binding ProductItem.Product.Description}"/>
+
+        </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -5,105 +5,115 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Online_Store.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-     Title="MainWindow" Height="600" Width="920" Background="Transparent">
-    <Border Background="#272537" >
-        <Grid Background="Transparent">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+        Name="Win"
+     Title="{Binding Basket.Count}" Height="600" Width="920"  MinWidth="640" MinHeight="390" Background="Transparent" >
+    <Border Background="#14171A" >
+        <Grid Background="Transparent" >
+
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock
+                <TextBlock 
                 Text="Ali"
+                FontFamily="Comic Sans MS"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Foreground="White"
                 FontSize="22"
-                Margin="20 0 0 0"
-                >
-
-            </TextBlock>
-            <StackPanel Grid.Row="1" >
-                <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-    Margin="4"
-    IsChecked="True"
-    Content="FIRST" />
-                <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-    Margin="4"
-    IsChecked="True"
-    Content="FIRST" />
-                <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-    Margin="4"
-    IsChecked="True"
-    Content="FIRST" />
-                <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-    Margin="4"
-    IsChecked="True"
-    Content="FIRST" />
-                <RadioButton
-    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
-    Margin="4"
-    IsChecked="True"
-    Content="FIRST" />
-
-            </StackPanel>
-            
                 
-            <!--<TextBox
-            Grid.Column="1"
-                Width="250"
-                Height="40"
-            Margin="5"
-            materialDesign:HintAssist.Hint="Build a search bar"
-            materialDesign:TextFieldAssist.DecorationVisibility="Visible"
-            BorderThickness="0"
-            MinWidth="200"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left"
-                Background="#353340"
-                Foreground="White"
-                VerticalContentAlignment="Center"
                 >
-                 
-            </TextBox>-->
 
-            <!--<TextBox
-                Grid.Column="1"
-  materialDesign:HintAssist.Hint="Floating Hint"
-  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-  VerticalAlignment="Center" />-->
-            <materialDesign:ColorZone Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
-        Mode="Standard"
-        Padding="8 4 8 4"
+                </TextBlock>
+
+
+
+                <!--<DockPanel Grid.Row="1" Cursor="Hand">
+                <StackPanel DockPanel.Dock="Top" Margin=" 0 10 0 0">
+                    <RadioButton
+    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+    Margin="4"
+    IsChecked="True"
+    Content="MAIN" />
+                    <RadioButton
+    Style="{StaticResource MaterialDesignTabRadioButtonRight}"
+    Margin="4"
+    IsChecked="True"
+    Content="FAVORIT" />
+
+                </StackPanel>
+
+               
+
+                
+
+            </DockPanel>-->
+
+
+                <DockPanel Grid.Column="1" >
+
+                    <Button 
+                        Background="#1d9bf0"
+                        Click="btnAddProduct_Click"
+                        DockPanel.Dock="Right"
+                            Margin="20"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                            materialDesign:ButtonAssist.CornerRadius="15" Cursor="Hand">
+
+                        <Button.ToolTip>See The Basket</Button.ToolTip>
+                        <materialDesign:PackIcon Kind="CartPlus" Width="40" Height="25" Foreground="White" />
+                    </Button>
+                  
+                    <materialDesign:Badged DockPanel.Dock="Right" VerticalAlignment="Center" Badge="{Binding Basket.Count}" materialDesign:ButtonAssist.CornerRadius="5">
+
+                        <Button  
+                            Background="#1d9bf0"
+                            Click="BtnBasket_Click"
+                    
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource MaterialDesignPaperSecondaryLightButton}"
+                            materialDesign:ButtonAssist.CornerRadius="15">
+
+                            <Button.ToolTip>See The Basket</Button.ToolTip>
+                            <materialDesign:PackIcon Kind="Basket" Width="20" Height="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Button>
+                    </materialDesign:Badged>
+
+                    <materialDesign:ColorZone 
+                        DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Mode="Standard"
         CornerRadius="2"
         Panel.ZIndex="1"
-        Margin="16 0 0 0"
+        Margin="20 0 0 0"
         materialDesign:ShadowAssist.ShadowDepth="Depth1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition
+                        <Grid x:Name="grid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
               Width="Auto" />
-                        <ColumnDefinition
+                                <ColumnDefinition
               Width="*" />
-                        <ColumnDefinition
+                                <ColumnDefinition
               Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Button
+                            </Grid.ColumnDefinitions>
+                            <Button
+                                Click="ButtonSearch_Click"
             Style="{StaticResource MaterialDesignToolButton}">
-                        <materialDesign:PackIcon
+                                <materialDesign:PackIcon
               Kind="Search"
               Opacity=".56" />
-                    </Button>
-                    <TextBox
+                            </Button>
+
+                            <TextBox
+                                x:Name="txtSearch"
+                                KeyDown="txtSearch_KeyDown"
             Grid.Column="1"
             Margin="8 0 0 0"
             materialDesign:HintAssist.Hint="Build a search bar"
@@ -111,16 +121,47 @@
             BorderThickness="0"
             MinWidth="200"
             VerticalAlignment="Center" />
-                    <Button
+                            <Button
             Style="{StaticResource MaterialDesignToolButton}"
             Grid.Column="2">
-                        <materialDesign:PackIcon
+                                <materialDesign:PackIcon
               Kind="Microphone"
               Opacity=".56"
               Margin="8 0 0 0" />
-                    </Button>
-                </Grid>
-            </materialDesign:ColorZone>
+                            </Button>
+
+
+                        </Grid>
+
+
+                    </materialDesign:ColorZone>
+
+
+
+
+                </DockPanel>
+
+            </Grid>
+
+            <materialDesign:Card Grid.Row="1" Background="Transparent">
+                <TabControl materialDesign:ColorZoneAssist.Background="Transparent" materialDesign:ColorZoneAssist.Foreground="#1d9bf0"
+    Style="{StaticResource MaterialDesignFilledTabControl}"
+    TabStripPlacement="Left" >
+                    <TabItem
+      Header="Products">
+                        <ScrollViewer x:Name="MyScrollViewer" Margin="20 0 0 20" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.Column="1">
+                            <WrapPanel Name="pnlProducts" Width="{Binding ElementName=MyScrollViewer, Path=ViewportWidth}"  ></WrapPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem
+      Header="Favorites">
+                        <ScrollViewer x:Name="ScrollViewerFav" Margin="20 0 0 20" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Grid.Row="1" Grid.Column="1">
+                            <WrapPanel Name="pnlFavorits" Width="{Binding ElementName=ScrollViewerFav, Path=ViewportWidth}"></WrapPanel>
+                        </ScrollViewer>
+                    </TabItem>
+
+                </TabControl>
+            </materialDesign:Card>
 
         </Grid>
     </Border>
