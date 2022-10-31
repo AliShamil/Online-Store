@@ -80,8 +80,24 @@ namespace Online_Store.Views
                    var words = txtSearch.Text.Trim().Split('-');
                     if(words.Length<=2)
                     {
-                        var firstPart = double.Parse(words[0]);
-                        var secondPart = double.Parse(words[1]);
+                        double firstPart = 0;
+                        double secondPart = 0;
+                        if (double.Parse(words[0]) < double.Parse(words[1]))
+                        {
+                         firstPart = double.Parse(words[0]);
+                         secondPart = double.Parse(words[1]);
+                        }
+                        else if(double.Parse(words[0]) > double.Parse(words[1]))
+                        {
+                            firstPart = double.Parse(words[1]);
+                            secondPart = double.Parse(words[0]);
+                        }
+                        else
+                        {
+                            firstPart= double.Parse(words[0]);
+                            secondPart = double.Parse(words[0]);
+                        }
+                            
                         if(item.ProductItem.Price>= firstPart && item.ProductItem.Price <=secondPart)
                             item.Visibility = Visibility.Visible;
                         else
