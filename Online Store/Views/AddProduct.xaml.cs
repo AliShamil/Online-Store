@@ -73,7 +73,7 @@ namespace Online_Store.Views
         {
             if (e.Key == Key.Enter)
                 ButtonAccept_Click(sender, e);
-            else if (e.Key == Key.Back)
+            else if (e.Key == Key.Delete)
                 ButtonCancel_Click(sender, e);
         }
     }
